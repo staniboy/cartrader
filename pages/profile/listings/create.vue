@@ -3,54 +3,26 @@
   <ClientOnly>
     <Form @submit="onSubmit">
       <div class="flex flex-col gap-3 py-4">
-        <DynamicFields :fields="dynamicFields" />
-        <!-- Image Picker Start -->
-        <div class="flex flex-col gap-2">
-          <label for="image" class="text-sm font-semibold">Image *</label>
-          <Field
-            name="image"
-            as="input"
-            type="file"
-            accept="image/*"
-            @change="onImageChange"
-            :rules="validationSchema.fields.image"
-          />
-          <ErrorMessage
-            name="image"
-            as="span"
-            class="text-red-700 text-sm font-bold"
-          />
-          <div v-if="image.preview">
-            <img
-              class="border p-4 w-60"
-              :src="image.preview"
-              alt="image preview"
-            />
-          </div>
-        </div>
-        <!-- Image Picker End -->
+        <FormDynamicFields :fields="dynamicFields" />
+        <FormImagePicker :rules="validationSchema.fields.image" name="image" />
         <button
           type="submit"
           class="rounded-md p-2 bg-gray-200 hover:bg-sky-500 hover:text-white font-semibold"
         >
           Submit
         </button>
+        <button
+          type="reset"
+          class="rounded-md p-2 bg-gray-200 hover:bg-sky-500 hover:text-white font-semibold"
+        >
+          Reset
+        </button>
       </div>
     </Form>
   </ClientOnly>
 </template>
 <script setup>
-//TODO: Handle form after seccusesful submit
-//TODO: Rewatch form vids
-//TODO: Make image picker component
-//TODO: Start git
 const { makes } = useCars();
-const image = useState("carImage", () => {
-  return {
-    preview: null,
-    image: null,
-  };
-});
 
 const { listing: validationSchema, currentYear } = useValidation();
 const dynamicFields = [
@@ -129,35 +101,16 @@ const dynamicFields = [
   },
 ];
 
-const onImageChange = (e) => {
-  const input = e.target;
-  if (input.files.length > 0) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      image.value.preview = e.target.result;
-    };
-    image.value.image = input.files[0];
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    (image.value.preview = null), (image.value.image = null);
-  }
-};
-
-const onSubmit = async (values) => {
-  try {
-    const response = await $fetch("/api/listings", {
-      method: "post",
-      body: {
-        ...values,
-        userId: useSupabaseUser().value.id,
-        image: values.image.name,
-      },
-    });
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: error.message,
-    });
-  }
+const onSubmit = async (values, actions) => {
+  await $fetch("/api/listings", {
+    method: "post",
+    body: {
+      ...values,
+      userId: useSupabaseUser().value.id,
+      image: values.image,
+    },
+  }).then(() => {
+    actions.resetForm();
+  });
 };
 </script>
