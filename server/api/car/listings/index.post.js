@@ -21,6 +21,7 @@ export default defineEventHandler(async (event) => {
         .create({
           data: {
             ...result,
+            city: result.city.toLowerCase(),
             features: result.features
               .split(",")
               .map((item) => item.trim())
