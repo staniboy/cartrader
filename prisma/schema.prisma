@@ -29,6 +29,7 @@ model Listing {
 model Message {
   id        Int    @id @default(autoincrement())
   listingId Int
+  name      String
   email     String
   phone     String
   message   String
