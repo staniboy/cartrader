@@ -2,7 +2,7 @@
   <GenericCard>
     <template v-slot:image>
       <NuxtImg
-        :src="car.url"
+        :src="car.image"
         class="w-max md:w-[300px] h-full cursor-pointer"
         @click="navigateTo(`/car/${car.name}-${car.id}`)"
       />
