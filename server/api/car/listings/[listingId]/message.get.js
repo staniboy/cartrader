@@ -3,11 +3,11 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
-  const { id: listingId } = event.context.params;
+  const listingId = parseInt(event.context.params.listingId);
 
-  return prisma.listing.delete({
+  return prisma.message.findMany({
     where: {
-      id: parseInt(listingId),
+      listingId: listingId,
     },
   });
 });
