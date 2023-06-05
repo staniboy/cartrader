@@ -15,16 +15,4 @@ useHead({
 });
 
 const { data: car } = await useFetchCar(route.params.id);
-
-// const { cars } = useCars();
-// const car = computed(() =>
-//   cars.find((car) => car.id === parseInt(route.params.id))
-// );
-
-// if (!car.value) {
-//   throw createError({
-//     statusCode: 404,
-//     message: `Car with id of ${route.params.id} does not exist!`,
-//   });
-// }
 </script>
