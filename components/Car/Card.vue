@@ -4,13 +4,13 @@
       <NuxtImg
         :src="car.image"
         class="w-max md:w-[300px] h-full cursor-pointer"
-        @click="navigateTo(`/car/${car.name}-${car.id}`)"
+        @click="navigateTo(`/car/${car.make}_${car.model}-${car.id}`)"
       />
     </template>
     <template v-slot:title>
       <span
         class="cursor-pointer text-blue-700"
-        @click="navigateTo(`/car/${car.name}-${car.id}`)"
+        @click="navigateTo(`/car/${car.make}_${car.model}-${car.id}`)"
       >
         {{ car.name }}
       </span>
