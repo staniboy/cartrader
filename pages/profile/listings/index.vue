@@ -19,5 +19,8 @@
   </div>
 </template>
 <script setup>
-const { listings } = useCars();
+const user = useSupabaseUser();
+const { data: listings } = await useFetch(
+  `/api/car/listings/user/${user.value.id}`
+);
 </script>
