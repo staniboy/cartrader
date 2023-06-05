@@ -102,15 +102,19 @@ const dynamicFields = [
 ];
 
 const onSubmit = async (values, actions) => {
-  await $fetch("/api/listings", {
+  await $fetch("/api/car/listings", {
     method: "post",
     body: {
       ...values,
       userId: useSupabaseUser().value.id,
       image: values.image,
     },
-  }).then(() => {
-    actions.resetForm();
-  });
+  })
+    .catch((err) => {
+      //TODO: Implement error catch
+    })
+    .then(() => {
+      navigateTo("/profile/listings");
+    });
 };
 </script>
