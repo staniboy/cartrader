@@ -12,7 +12,7 @@
         class="cursor-pointer text-blue-700"
         @click="navigateTo(`/car/${car.make}_${car.model}-${car.id}`)"
       >
-        {{ car.name }}
+        {{ car.make }} {{ car.model }}
       </span>
     </template>
     <template v-slot:content>
