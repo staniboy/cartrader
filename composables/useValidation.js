@@ -18,12 +18,23 @@ export const useValidation = () => {
     city: string().required("City is required"),
     seats: number()
       .required("Number of seats is required")
-      .min(1, "Must have at least 1 seat!"),
+      .min(1, "Must have at least 1 seat"),
     description: string()
       .required("Description is required")
-      .min(50, "Description must be at least 50 characters long!")
+      .min(50, "Description must be at least 50 characters long")
       .max(500, "Description is too long(max. 500 chars)"),
     features: string().max(500, "Too many features"),
   });
-  return { listing, currentYear };
+  const message = object({
+    name: string().required("Name is required"),
+    email: string().email().required("Email is required"),
+    phone: string()
+      .length(10)
+      .matches(/^[0-9]+$/)
+      .required("Phone number is required"),
+    message: string()
+      .min(25, "Message is too short")
+      .required("Message is required"),
+  });
+  return { listing, message, currentYear };
 };
