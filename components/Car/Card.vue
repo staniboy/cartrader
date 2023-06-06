@@ -2,7 +2,7 @@
   <GenericCard>
     <template v-slot:image>
       <NuxtImg
-        :src="car.image"
+        :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
         class="w-max md:w-[300px] h-full cursor-pointer"
         @click="navigateTo(`/car/${car.make}_${car.model}-${car.id}`)"
       />
@@ -27,6 +27,7 @@
   </GenericCard>
 </template>
 <script setup>
+const config = useRuntimeConfig();
 const props = defineProps({
   car: Object,
   favState: Boolean,
