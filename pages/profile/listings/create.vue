@@ -22,8 +22,9 @@
   </ClientOnly>
 </template>
 <script setup>
+//TODO: implement spinner
+const supabase = useSupabaseClient();
 const { makes } = useCars();
-
 const { listing: validationSchema, currentYear } = useValidation();
 const dynamicFields = [
   {
@@ -101,17 +102,31 @@ const dynamicFields = [
   },
 ];
 
-const onSubmit = async (values, actions) => {
+const onSubmit = async (values) => {
+  // Upload image
+  const fileName = Math.floor(Math.random() * 100000000);
+
+  const { data, error } = await supabase.storage
+    .from("images")
+    .upload("public/" + fileName, values.image);
+
+  if (error) {
+    alert(error);
+  }
+
+  // Fetch
   await $fetch("/api/car/listings", {
     method: "post",
     body: {
       ...values,
       userId: useSupabaseUser().value.id,
-      image: values.image,
+      image: data.path,
     },
   })
-    .catch((err) => {
+    .catch((error) => {
       //TODO: Implement error catch
+      alert(error);
+      supabase.storage.from("images").remove(data.path);
     })
     .then(() => {
       navigateTo("/profile/listings");
