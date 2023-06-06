@@ -9,6 +9,7 @@
       placeholder="Search by city..."
       v-model="city"
     />
+    <!-- TODO: Submit on enter -->
     <button
       class="bg-sky-600 hover:bg-sky-700 px-10 text-white font-bold"
       @click="handleSearch"
