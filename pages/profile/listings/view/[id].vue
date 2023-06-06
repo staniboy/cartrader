@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: Display "there is no new messages if there is no messages" -->
   <GenericCard v-for="message in messages">
     <template v-slot:title>{{ message.name }}</template>
     <template v-slot:content> {{ message.message }} </template>
