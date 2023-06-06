@@ -3,6 +3,7 @@ import Joi from "joi";
 
 const prisma = new PrismaClient();
 
+//TODO: replace with Yup validation from useValidation
 const validation = Joi.object({
   email: Joi.string().email({ maxDomainSegments: 2 }).required(),
   phone: Joi.string()
