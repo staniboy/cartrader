@@ -14,7 +14,9 @@
         :to="`/profile/listings/view/${listing.id}`"
         >View</nuxt-link
       >
-      <p class="text-red-400 cursor-pointer">Delete</p>
+      <p class="text-red-400 cursor-pointer" @click="deleteListing(listing.id)">
+        Delete
+      </p>
     </CarCard>
   </div>
 </template>
@@ -23,4 +25,8 @@ const user = useSupabaseUser();
 const { data: listings } = await useFetch(
   `/api/car/listings/user/${user.value.id}`
 );
+const deleteListing = async (id) => {
+  await $fetch(`/api/car/listings/${id}`, { method: "DELETE" });
+  listings.value = listings.value.filter((listing) => listing.id !== id);
+};
 </script>
