@@ -22,7 +22,7 @@ export const useValidation = () => {
     description: string()
       .required("Description is required")
       .min(50, "Description must be at least 50 characters long")
-      .max(500, "Description is too long(max. 500 chars)"),
+      .max(1500, "Description is too long(max. 500 chars)"),
     features: string().max(500, "Too many features"),
   });
   const message = object({
