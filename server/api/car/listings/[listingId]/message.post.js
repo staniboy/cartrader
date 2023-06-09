@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const listingId = parseInt(event.context.params.listingId);
 
-  const value = validation.validate(body).catch((error) => {
+  const value = await validation.validate(body).catch((error) => {
     throw createError({
       statusCode: 412,
       message: error.message,
@@ -17,6 +17,6 @@ export default defineEventHandler(async (event) => {
   });
 
   return await prisma.message.create({
-    data: { ...value, listingId },
+    data: { ...value, listingId: listingId },
   });
 });
