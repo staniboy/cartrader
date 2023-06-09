@@ -4,13 +4,13 @@
       <NuxtImg
         :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
         class="w-max md:w-[300px] h-full cursor-pointer"
-        @click="navigateTo(`/car/${car.make}_${car.model}-${car.id}`)"
+        @click="navigateTo(`/car/${car.make} ${car.model}/${car.id}`)"
       />
     </template>
     <template v-slot:title>
       <span
         class="cursor-pointer text-blue-700"
-        @click="navigateTo(`/car/${car.make}_${car.model}-${car.id}`)"
+        @click="navigateTo(`/car/${car.make} ${car.model}/${car.id}`)"
       >
         {{ car.make }} {{ car.model }}
       </span>
