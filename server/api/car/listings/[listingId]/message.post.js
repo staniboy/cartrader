@@ -1,29 +1,21 @@
+import { useValidation } from "~/composables/useValidation";
 import { PrismaClient } from "@prisma/client";
-import Joi from "joi";
 
 const prisma = new PrismaClient();
 
-//TODO: replace with Yup validation from useValidation
-const validation = Joi.object({
-  email: Joi.string().email({ maxDomainSegments: 2 }).required(),
-  phone: Joi.string()
-    .pattern(/^[0-9]+$/)
-    .required(),
-  name: Joi.string().required(),
-  message: Joi.string().min(20).required(),
-});
+const { message: validation } = useValidation();
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const listingId = parseInt(event.context.params.listingId);
-  const { value, error } = validation.validate(body);
 
-  if (error) {
+  const value = validation.validate(body).catch((error) => {
     throw createError({
       statusCode: 412,
       message: error.message,
     });
-  }
+  });
+
   return await prisma.message.create({
     data: { ...value, listingId },
   });
