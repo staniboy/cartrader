@@ -20,7 +20,6 @@
     "@prisma/client": "^4.15.0",
     "@vee-validate/nuxt": "^4.9.5",
     "@vee-validate/yup": "^4.9.5",
-    "@vueuse/nuxt": "^10.1.2",
-    "joi": "^17.9.2"
+    "@vueuse/nuxt": "^10.1.2"
   }
 }
