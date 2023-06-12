@@ -16,7 +16,7 @@
       </span>
     </template>
     <template v-slot:content>
-      {{ car.description }}
+      <span class="line-clamp-3">{{ car.description }}</span>
     </template>
     <template v-slot:append>
       <slot></slot>
