@@ -21,6 +21,7 @@
   </div>
 </template>
 <script setup>
+// TODO: Add delete confirmation
 const user = useSupabaseUser();
 const { data: listings } = await useFetch(
   `/api/car/listings/user/${user.value.id}`
