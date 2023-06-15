@@ -1,28 +1,30 @@
 <template>
   <h1 class="text-4xl">Add New Listing</h1>
   <ClientOnly>
-    <Form @submit="onSubmit">
+    <Form @submit="onSubmit" v-slot="{ isSubmitting }">
       <div class="flex flex-col gap-3 py-4">
         <FormDynamicFields :fields="dynamicFields" />
         <FormImagePicker :rules="validationSchema.fields.image" name="image" />
         <button
           type="submit"
+          :disabled="isSubmitting"
           class="rounded-md p-2 bg-gray-200 hover:bg-sky-500 hover:text-white font-semibold"
         >
           Submit
         </button>
         <button
           type="reset"
+          :disabled="isSubmitting"
           class="rounded-md p-2 bg-gray-200 hover:bg-sky-500 hover:text-white font-semibold"
         >
           Reset
         </button>
       </div>
+      <Spinner v-if="isSubmitting" />
     </Form>
   </ClientOnly>
 </template>
 <script setup>
-//TODO: implement spinner
 const supabase = useSupabaseClient();
 const { makes } = useCars();
 const { listing: validationSchema, currentYear } = useValidation();
