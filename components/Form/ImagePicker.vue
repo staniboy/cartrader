@@ -39,10 +39,10 @@ const { value, errorMessage, handleBlur, handleChange } = useField(
   props.rules
 );
 
-const image = useState("carImage", () => ({
+const image = ref({
   preview: null,
   file: null,
-}));
+});
 
 const clearImage = () => {
   image.value.file = null;
