@@ -1,9 +1,16 @@
 import { useValidation } from "~/composables/useValidation";
 import { PrismaClient } from "@prisma/client";
+import { serverSupabaseUser } from "#supabase/server";
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
+  const user = await serverSupabaseUser(event);
+
+  if (!user.id) {
+    throw createError({ statusCode: 401, statusMessage: "Not Authorized!" });
+  }
+
   const { listing: listingValidation } = useValidation();
 
   const body = await readBody(event);
