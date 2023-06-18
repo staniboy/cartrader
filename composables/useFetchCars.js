@@ -8,7 +8,6 @@ export default async (city, params) => {
   if (error.value) {
     throw createError({
       ...error.value,
-      statusMessage: "Unable to fetch cars",
     });
   }
 
