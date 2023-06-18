@@ -1,6 +1,8 @@
 <template>
-  <CarList v-if="cars && cars.length" :cars="cars" />
-  <div v-else class="text-sm">No cars were found</div>
+  <ClientOnly>
+    <CarList v-if="cars && cars.length" :cars="cars" />
+    <div v-else class="text-sm">No cars were found</div>
+  </ClientOnly>
 </template>
 <script setup>
 const route = useRoute();

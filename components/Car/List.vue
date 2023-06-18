@@ -1,21 +1,12 @@
 <template>
   <div class="w-full">
     <CarCard v-for="car in cars" :key="car.id" :car="car">
-      <ClientOnly>
-        <img
-          :src="favStorage.includes(car.id) ? favChecked : favUnchecked"
-          class="w-5 h-5 cursor-pointer"
-          alt=""
-          @click="handleFav(car.id)"
-        />
-        <template #fallback>
-          <img
-            src="@/assets/heartOutline.png"
-            class="w-5 h-5 cursor-pointer"
-            alt=""
-          />
-        </template>
-      </ClientOnly>
+      <img
+        :src="favStorage.includes(car.id) ? favChecked : favUnchecked"
+        class="w-5 h-5 cursor-pointer"
+        alt=""
+        @click="handleFav(car.id)"
+      />
     </CarCard>
   </div>
 </template>
