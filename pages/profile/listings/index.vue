@@ -8,16 +8,21 @@
     >
   </div>
   <div class="flex flex-col">
-    <CarCard v-for="listing in listings" :car="listing">
-      <nuxt-link
-        class="text-blue-400"
-        :to="`/profile/listings/view/${listing.id}`"
-        >View</nuxt-link
-      >
-      <p class="text-red-400 cursor-pointer" @click="deleteListing(listing.id)">
-        Delete
-      </p>
-    </CarCard>
+    <ClientOnly>
+      <CarCard v-for="listing in listings" :car="listing">
+        <nuxt-link
+          class="text-blue-400"
+          :to="`/profile/listings/view/${listing.id}`"
+          >View</nuxt-link
+        >
+        <p
+          class="text-red-400 cursor-pointer"
+          @click="deleteListing(listing.id)"
+        >
+          Delete
+        </p>
+      </CarCard>
+    </ClientOnly>
   </div>
 </template>
 <script setup>
