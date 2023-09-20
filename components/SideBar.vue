@@ -13,7 +13,7 @@
       </h3>
       <div
         v-if="modal.location"
-        class="absolute border shadow left-56 p-5 top-1 -m-1 bg-white z-50"
+        class="absolute border shadow lg:left-56 p-5 sm:max-md:top-20 -m-1 bg-white z-50"
       >
         <input type="text" class="border p-1 rounded" v-model="city" />
         <button
@@ -36,7 +36,7 @@
       </h3>
       <div
         v-if="modal.make"
-        class="absolute border shadow left-56 p-5 top-1 -m-1 w-[600px] flex justify-between flex-wrap bg-white z-50"
+        class="absolute border shadow lg:left-56 p-5 sm:max-md:top-20 -m-1 w-[600px] flex justify-between flex-wrap bg-white z-50"
       >
         <h4
           v-for="make in makes"
