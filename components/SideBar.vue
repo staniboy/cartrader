@@ -30,7 +30,8 @@
       <h3>Make:</h3>
       <h3 class="text-blue-500 capitalize whitespace-nowrap cursor-pointer">
         <!-- TODO: Reflect current route -->
-        <select name="cars" id="cars" @change="onChangeMake">
+        <select name="cars" id="cars" @change="onChangeMake" v-model="selected">
+          <option value="all">All</option>
           <option v-for="make in makes" :value="make">
             {{ make }}
           </option>
@@ -81,6 +82,7 @@ const route = useRoute();
 const router = useRouter();
 const city = ref("");
 const { makes } = useCars();
+const selected = ref(route.params.make || "all");
 const priceRange = ref({
   min: 0,
   max: 0,
@@ -122,13 +124,18 @@ const onChangeLocation = () => {
   city.value = "";
 };
 const onChangeMake = (e) => {
-  router.push({
-    params: {
-      city: route.params.city,
-      make: e.target.value,
-    },
-    query: route.query,
-  });
+  const make = e.target.value;
+  if (make === "all") {
+    router.push({ path: `/city/${route.params.city}/car/` });
+  } else {
+    router.push({
+      params: {
+        city: route.params.city,
+        make: make,
+      },
+      query: route.query,
+    });
+  }
 };
 const onChangePrice = () => {
   toggleModal("price");
