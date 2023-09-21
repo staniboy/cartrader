@@ -26,27 +26,16 @@
     </div>
     <!-- LOCATION END -->
     <!-- MAKE START -->
-    <div class="relative flex gap-2 p-4 justify-between">
+    <div class="flex gap-2 p-4 justify-between">
       <h3>Make:</h3>
-      <h3
-        class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
-        @click="toggleModal('make')"
-      >
-        {{ route.params.make || "Any" }}
+      <h3 class="text-blue-500 capitalize whitespace-nowrap cursor-pointer">
+        <!-- TODO: Reflect current route -->
+        <select name="cars" id="cars" @change="onChangeMake">
+          <option v-for="make in makes" :value="make">
+            {{ make }}
+          </option>
+        </select>
       </h3>
-      <div
-        v-if="modal.make"
-        class="absolute border shadow lg:left-56 p-5 sm:max-md:top-20 -m-1 w-[600px] flex justify-between flex-wrap bg-white z-50"
-      >
-        <h4
-          v-for="make in makes"
-          :key="make"
-          class="w-1/3 text-blue-500 cursor-pointer"
-          @click="onChangeMake(make)"
-        >
-          {{ make }}
-        </h4>
-      </div>
     </div>
     <!-- MAKE END -->
     <!-- PRICE START -->
@@ -132,12 +121,11 @@ const onChangeLocation = () => {
   });
   city.value = "";
 };
-const onChangeMake = (make) => {
-  toggleModal("make");
+const onChangeMake = (e) => {
   router.push({
     params: {
       city: route.params.city,
-      make: make,
+      make: e.target.value,
     },
     query: route.query,
   });
