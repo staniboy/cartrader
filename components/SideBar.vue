@@ -3,26 +3,35 @@
     class="sticky top-20 shadow border flex flex-col sm:max-lg:flex-row md:max-lg:justify-start lg:w-72 divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white"
   >
     <!-- LOCATION START -->
-    <div class="relative flex gap-2 p-4 justify-between">
-      <h3>Location:</h3>
-      <h3
-        class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
-        @click="toggleModal('location')"
-      >
-        {{ route.params.city }}
-      </h3>
-      <div
-        v-if="modal.location"
-        class="absolute border shadow lg:left-56 p-5 sm:max-md:top-20 -m-1 bg-white z-50"
-      >
-        <input type="text" class="border p-1 rounded" v-model="city" />
+    <div class="relative flex p-4 justify-between">
+      <div class="flex gap-2">
+        <h3>Location:</h3>
+        <div
+          v-if="!modal.location"
+          class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
+          @click="toggleModal('location')"
+        >
+          {{ route.params.city }}
+        </div>
+        <input
+          v-else
+          v-show="modal.location"
+          ref="locationInput"
+          type="text"
+          class="border p-1 rounded"
+          @keyup.enter="onChangeLocation"
+          @blur="toggleModal('location')"
+        />
+      </div>
+      <!-- <div class="flex gap-1 align-center" :class="!modal.location && 'hidden'">
+
         <button
           class="bg-blue-500 w-full mt-2 rounded text-white p-1"
           @click="onChangeLocation"
         >
           Apply
         </button>
-      </div>
+      </div> -->
     </div>
     <!-- LOCATION END -->
     <!-- MAKE START -->
@@ -80,13 +89,13 @@
 <script setup>
 const route = useRoute();
 const router = useRouter();
-const city = ref("");
 const { makes } = useCars();
 const selected = ref(route.params.make || "all");
 const priceRange = ref({
   min: 0,
   max: 0,
 });
+const locationInput = ref();
 const priceRangeText = computed(() => {
   const minPrice = route.query.minPrice;
   const maxPrice = route.query.maxPrice;
@@ -104,11 +113,16 @@ const modal = ref({
 
 const toggleModal = (key) => {
   modal.value[key] = !modal.value[key];
+  if (key === "location" && modal.value[key]) {
+    console.log(locationInput.value);
+    nextTick(() => locationInput.value.focus());
+  }
 };
 
-const onChangeLocation = () => {
-  if (!city.value) return;
-  if (!isNaN(parseInt(city.value))) {
+const onChangeLocation = (e) => {
+  const city = e.target.value;
+  if (!city) return;
+  if (!isNaN(parseInt(city))) {
     throw createError({
       statusCode: 400,
       message: "Invalid city",
@@ -116,12 +130,11 @@ const onChangeLocation = () => {
   }
   router.push({
     params: {
-      city: city.value,
+      city: city,
       make: route.params.make,
     },
     query: route.query,
   });
-  city.value = "";
 };
 const onChangeMake = (e) => {
   const make = e.target.value;
