@@ -4,7 +4,7 @@
   >
     <!-- LOCATION START -->
     <div
-      class="flex h-[64px] items-center p-4 justify-between flex gap-2 w-full"
+      class="flex h-[64px] items-center p-4 justify-between flex gap-2 w-full basis-1/3"
     >
       <h3>Location:</h3>
       <div
@@ -25,7 +25,7 @@
     </div>
     <!-- LOCATION END -->
     <!-- MAKE START -->
-    <div class="flex h-[64px] items-center gap-2 p-4 justify-between">
+    <div class="flex h-[64px] items-center gap-2 p-4 justify-between basis-1/3">
       <h3>Make:</h3>
       <h3 class="text-blue-500 capitalize whitespace-nowrap cursor-pointer">
         <!-- TODO: Reflect current route -->
@@ -40,7 +40,7 @@
     <!-- MAKE END -->
     <!-- PRICE START -->
     <div
-      class="relative flex h-[64px] items-center flex gap-2 p-4 justify-between"
+      class="relative flex h-[64px] items-center flex gap-2 p-4 justify-between basis-1/3"
     >
       <h3>Price:</h3>
       <h3
