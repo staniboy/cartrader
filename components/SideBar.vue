@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sticky top-20 shadow border flex shrink-0 flex-col sm:max-lg:flex-row md:max-lg:justify-start w-full divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white min-w-0"
+    class="sticky top-20 shadow border flex shrink-0 flex-col max-sm:h-[64px] sm:max-lg:flex-row md:max-lg:justify-start w-full divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white min-w-0"
   >
     <!-- LOCATION START -->
     <div
