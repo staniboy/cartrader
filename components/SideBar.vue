@@ -1,81 +1,90 @@
 <template>
   <div
-    class="sticky top-20 shadow border flex shrink-0 flex-col max-sm:h-[64px] sm:max-lg:flex-row md:max-lg:justify-start w-full divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white min-w-0"
+    class="h-full justify-between sticky top-20 shadow border flex shrink-0 flex-col sm:max-lg:flex-row w-full divide-y sm:max-lg:divide-y-0 z-40 bg-white min-w-0"
   >
-    <!-- LOCATION START -->
-    <div
-      class="flex h-[64px] items-center p-4 justify-between flex gap-2 w-full basis-1/3"
-    >
-      <h3>Location:</h3>
-      <div
-        v-if="!modal.location"
-        class="text-blue-500 capitalize cursor-pointer truncate"
-        @click="toggleModal('location')"
-      >
-        {{ route.params.city }}
-      </div>
-      <input
-        v-else
-        ref="locationInput"
-        type="text"
-        class="border p-1 rounded w-full"
-        @keyup.enter="onChangeLocation"
-        @blur="toggleModal('location')"
-      />
-    </div>
-    <!-- LOCATION END -->
-    <!-- MAKE START -->
-    <div class="flex h-[64px] items-center gap-2 p-4 justify-between basis-1/3">
-      <h3>Make:</h3>
-      <h3 class="text-blue-500 capitalize whitespace-nowrap cursor-pointer">
-        <!-- TODO: Reflect current route -->
-        <select name="cars" id="cars" @change="onChangeMake" v-model="selected">
-          <option value="all">All</option>
-          <option v-for="make in makes" :value="make">
-            {{ make }}
-          </option>
-        </select>
-      </h3>
-    </div>
-    <!-- MAKE END -->
-    <!-- PRICE START -->
-    <div
-      class="relative flex h-[64px] items-center flex gap-2 p-4 justify-between basis-1/3"
-    >
-      <h3>Price:</h3>
-      <h3
-        class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
-        @click="toggleModal('price')"
-      >
-        {{ priceRangeText }}
-      </h3>
-      <div
-        v-if="modal.price"
-        class="absolute border shadow left-56 p-5 top-1 -m-1 bg-white flex flex-col gap-2 z-50"
-      >
-        <input
-          class="border p-1 rounded"
-          type="number"
-          placeholder="Min"
-          min="0"
-          v-model="priceRange.min"
-        />
-        <input
-          class="border p-1 rounded"
-          type="number"
-          placeholder="Max"
-          min="0"
-          v-model="priceRange.max"
-        />
-        <button
-          class="bg-blue-400 w-full rounded text-white p-1"
-          @click="onChangePrice"
+    <div class="basis-1/3 truncate">
+      <!-- LOCATION START -->
+      <div class="flex items-center p-4 justify-between gap-2 w-full h-[64px]">
+        <h3>Location:</h3>
+        <div
+          v-if="!modal.location"
+          class="text-blue-500 capitalize cursor-pointer truncate"
+          @click="toggleModal('location')"
         >
-          Apply
-        </button>
+          {{ route.params.city }}
+        </div>
+        <input
+          v-else
+          ref="locationInput"
+          type="text"
+          class="border p-1 rounded w-full"
+          @keyup.enter="onChangeLocation"
+          @blur="toggleModal('location')"
+        />
       </div>
+      <!-- LOCATION END -->
     </div>
-    <!-- PRICE END -->
+    <div class="basis-1/3">
+      <!-- MAKE START -->
+      <div class="flex items-center gap-2 p-4 justify-between h-[64px]">
+        <h3>Make:</h3>
+        <h3 class="text-blue-500 capitalize whitespace-nowrap cursor-pointer">
+          <!-- TODO: Reflect current route -->
+          <select
+            name="cars"
+            id="cars"
+            @change="onChangeMake"
+            v-model="selected"
+          >
+            <option value="all">All</option>
+            <option v-for="make in makes" :value="make">
+              {{ make }}
+            </option>
+          </select>
+        </h3>
+      </div>
+      <!-- MAKE END -->
+    </div>
+    <div class="basis-1/3">
+      <!-- PRICE START -->
+      <div
+        class="relative flex items-center gap-2 p-4 justify-between h-[64px]"
+      >
+        <h3>Price:</h3>
+        <h3
+          class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
+          @click="toggleModal('price')"
+        >
+          {{ priceRangeText }}
+        </h3>
+        <div
+          v-if="modal.price"
+          class="absolute border shadow left-56 p-5 top-1 -m-1 bg-white flex flex-col gap-2 z-50"
+        >
+          <input
+            class="border p-1 rounded"
+            type="number"
+            placeholder="Min"
+            min="0"
+            v-model="priceRange.min"
+          />
+          <input
+            class="border p-1 rounded"
+            type="number"
+            placeholder="Max"
+            min="0"
+            v-model="priceRange.max"
+          />
+          <button
+            class="bg-blue-400 w-full rounded text-white p-1"
+            @click="onChangePrice"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+      <!-- PRICE END -->
+    </div>
   </div>
 </template>
 <script setup>
