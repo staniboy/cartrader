@@ -1,37 +1,25 @@
 <template>
   <div
-    class="sticky top-20 shadow border flex flex-col sm:max-lg:flex-row md:max-lg:justify-start lg:w-72 divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white"
+    class="sticky top-20 shadow border flex flex-col sm:max-lg:flex-row md:max-lg:justify-start w-full divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white"
   >
     <!-- LOCATION START -->
-    <div class="relative flex p-4 justify-between">
-      <div class="flex gap-2">
-        <h3>Location:</h3>
-        <div
-          v-if="!modal.location"
-          class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
-          @click="toggleModal('location')"
-        >
-          {{ route.params.city }}
-        </div>
-        <input
-          v-else
-          v-show="modal.location"
-          ref="locationInput"
-          type="text"
-          class="border p-1 rounded"
-          @keyup.enter="onChangeLocation"
-          @blur="toggleModal('location')"
-        />
+    <div class="p-4 justify-between flex gap-2 w-[300px]">
+      <h3>Location:</h3>
+      <div
+        v-if="!modal.location"
+        class="Class Properties text-blue-500 capitalize cursor-pointer truncate"
+        @click="toggleModal('location')"
+      >
+        {{ route.params.city }}
       </div>
-      <!-- <div class="flex gap-1 align-center" :class="!modal.location && 'hidden'">
-
-        <button
-          class="bg-blue-500 w-full mt-2 rounded text-white p-1"
-          @click="onChangeLocation"
-        >
-          Apply
-        </button>
-      </div> -->
+      <input
+        v-else
+        ref="locationInput"
+        type="text"
+        class="border p-1 rounded"
+        @keyup.enter="onChangeLocation"
+        @blur="toggleModal('location')"
+      />
     </div>
     <!-- LOCATION END -->
     <!-- MAKE START -->
