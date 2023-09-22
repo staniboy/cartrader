@@ -3,7 +3,9 @@
     class="sticky top-20 shadow border flex flex-col sm:max-lg:flex-row md:max-lg:justify-start w-full divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white"
   >
     <!-- LOCATION START -->
-    <div class="p-4 justify-between flex gap-2 w-[300px]">
+    <div
+      class="flex items-center p-4 justify-between flex gap-2 w-[300px] h-[64px]"
+    >
       <h3>Location:</h3>
       <div
         v-if="!modal.location"
@@ -23,7 +25,7 @@
     </div>
     <!-- LOCATION END -->
     <!-- MAKE START -->
-    <div class="flex gap-2 p-4 justify-between">
+    <div class="flex h-[64px] align-center gap-2 p-4 justify-between">
       <h3>Make:</h3>
       <h3 class="text-blue-500 capitalize whitespace-nowrap cursor-pointer">
         <!-- TODO: Reflect current route -->
@@ -37,7 +39,9 @@
     </div>
     <!-- MAKE END -->
     <!-- PRICE START -->
-    <div class="relative flex gap-2 p-4 justify-between">
+    <div
+      class="relative flex h-[64px] align-center flex gap-2 p-4 justify-between"
+    >
       <h3>Price:</h3>
       <h3
         class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
