@@ -1,15 +1,15 @@
 <template>
   <div
-    class="sticky top-20 shadow border flex flex-col sm:max-lg:flex-row md:max-lg:justify-start w-full divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white"
+    class="sticky top-20 shadow border flex shrink-0 flex-col sm:max-lg:flex-row md:max-lg:justify-start w-full divide-y sm:max-lg:divide-y-0 z-40 h-max bg-white min-w-0"
   >
     <!-- LOCATION START -->
     <div
-      class="flex items-center p-4 justify-between flex gap-2 w-[300px] h-[64px]"
+      class="flex h-[64px] items-center p-4 justify-between flex gap-2 w-full"
     >
       <h3>Location:</h3>
       <div
         v-if="!modal.location"
-        class="Class Properties text-blue-500 capitalize cursor-pointer truncate"
+        class="text-blue-500 capitalize cursor-pointer truncate"
         @click="toggleModal('location')"
       >
         {{ route.params.city }}
@@ -18,7 +18,7 @@
         v-else
         ref="locationInput"
         type="text"
-        class="border p-1 rounded"
+        class="border p-1 rounded w-full"
         @keyup.enter="onChangeLocation"
         @blur="toggleModal('location')"
       />
