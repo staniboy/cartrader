@@ -1,8 +1,8 @@
 <template>
   <div
-    class="h-full justify-between sticky top-20 shadow border flex shrink-0 flex-col sm:max-lg:flex-row w-full divide-y sm:max-lg:divide-y-0 z-40 bg-white min-w-0"
+    class="h-full justify-between sticky top-20 shadow border flex flex-col shrink-0 sm:max-lg:flex-row w-full divide-y sm:max-lg:divide-y-0 z-40 bg-white min-w-0"
   >
-    <div class="basis-1/3 truncate">
+    <div v-if="!modal.price" class="basis-1/3 truncate">
       <!-- LOCATION START -->
       <div class="flex items-center p-4 justify-between gap-2 w-full h-[64px]">
         <h3>Location:</h3>
@@ -24,7 +24,7 @@
       </div>
       <!-- LOCATION END -->
     </div>
-    <div class="basis-1/3">
+    <div v-if="!modal.price" class="basis-1/3">
       <!-- MAKE START -->
       <div class="flex items-center gap-2 p-4 justify-between h-[64px]">
         <h3>Make:</h3>
@@ -45,31 +45,30 @@
       </div>
       <!-- MAKE END -->
     </div>
-    <div class="basis-1/3">
+    <div class="basis-1/3 grow">
       <!-- PRICE START -->
       <div
-        class="relative flex items-center gap-2 p-4 justify-between h-[64px]"
+        class="flex items-center grow gap-2 p-4 justify-between min-h-[64px]"
       >
-        <h3>Price:</h3>
-        <h3
-          class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
-          @click="toggleModal('price')"
-        >
-          {{ priceRangeText }}
-        </h3>
-        <div
-          v-if="modal.price"
-          class="absolute border shadow left-56 p-5 top-1 -m-1 bg-white flex flex-col gap-2 z-50"
-        >
+        <div v-if="!modal.price" class="flex grow justify-between">
+          <div>Price:</div>
+          <div
+            class="text-blue-500 capitalize whitespace-nowrap cursor-pointer"
+            @click="toggleModal('price')"
+          >
+            {{ priceRangeText }}
+          </div>
+        </div>
+        <div v-else class="flex flex-col grow gap-2 sm:max-lg:flex-row grow">
           <input
-            class="border p-1 rounded"
+            class="border p-1 rounded w-full"
             type="number"
             placeholder="Min"
             min="0"
             v-model="priceRange.min"
           />
           <input
-            class="border p-1 rounded"
+            class="border p-1 rounded w-full"
             type="number"
             placeholder="Max"
             min="0"
