@@ -2,7 +2,7 @@
   <Form
     v-slot="{ errors }"
     @submit="onSubmit"
-    class="w-4/5 font-sans text-lg rounded-full flex justify-between overflow-hidden drop-shadow-md mx-auto h-11"
+    class="w-full font-sans text-lg rounded-full flex justify-between overflow-hidden drop-shadow-md mx-auto h-11"
   >
     <Field
       name="search"
