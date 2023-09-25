@@ -3,7 +3,7 @@
     <template v-slot:image>
       <NuxtImg
         :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
-        class="w-max md:w-[300px] h-full cursor-pointer"
+        class="w-full h-full object-cover"
         @click="navigateTo(`/car/${car.make} ${car.model}/${car.id}`)"
       />
     </template>

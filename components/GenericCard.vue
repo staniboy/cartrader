@@ -1,10 +1,12 @@
 <template>
-  <div class="relative shadow border w-full overflow-hidden mb-5 lg:h-[200px]">
-    <div class="flex flex-col md:flex-row w-full h-full">
+  <div class="shadow border w-full overflow-hidden mb-5 sm:h-[200px]">
+    <div class="flex flex-col sm:flex-row w-full h-full">
       <!-- Card Image Slot -->
-      <slot name="image"></slot>
+      <div class="min-w-[300px]">
+        <slot name="image" class="absolute"></slot>
+      </div>
 
-      <div class="p-4 w-full flex flex-col">
+      <div class="p-4">
         <div>
           <div class="flex items-center justify-between mb-5">
             <!-- Card Title -->
