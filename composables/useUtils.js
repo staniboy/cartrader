@@ -4,5 +4,15 @@ export const useUtils = () => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
   }
-  return { toTitleCase };
+
+  /** @param {string} sentence */
+  function capitalizeSentence(sentence) {
+    return sentence
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .toString()
+      .replace(",", " ");
+  }
+
+  return { toTitleCase, capitalizeSentence };
 };
