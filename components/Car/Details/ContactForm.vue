@@ -1,14 +1,14 @@
 <template>
-  <div class="flex flex-col gap-2 w-[800px] mt-10">
+  <div class="flex flex-col lg:w-[800px] gap-2 w-full mt-10">
     <span
       v-if="statusMessage"
       class="text-md bg-sky-500 text-white font-bold rounded-md p-4"
       >{{ statusMessage }}</span
     >
     <Form @submit="handleSubmit">
-      <div class="flex w-[800px] justify-between">
+      <div class="flex max-md:flex-col w-full gap-2">
         <!-- Name -->
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 basis-1/3">
           <Field
             as="input"
             type="text"
@@ -24,7 +24,7 @@
           />
         </div>
         <!-- Email -->
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 basis-1/3">
           <Field
             as="input"
             type="text"
@@ -41,7 +41,7 @@
         </div>
 
         <!-- Phone -->
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 basis-1/3">
           <Field
             as="input"
             type="number"
@@ -58,7 +58,7 @@
         </div>
       </div>
       <!-- Message -->
-      <div class="flex flex-col gap-2 w-[800px] mt-4">
+      <div class="flex flex-col gap-2 w-full mt-4">
         <Field
           as="textarea"
           name="message"
