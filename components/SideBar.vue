@@ -1,10 +1,10 @@
 <template>
   <div
-    class="h-full justify-between sticky top-20 shadow border flex flex-col shrink-0 sm:max-lg:flex-row w-full divide-y sm:max-lg:divide-y-0 z-40 bg-white min-w-0"
+    class="bg-white sticky top-20 shadow border flex flex-col shrink-0 justify-between sm:max-lg:flex-row min-w-0 min-w-[280px] min-h-[68px] h-full divide-y sm:max-lg:divide-y-0 z-40"
   >
     <div v-if="!modal.price" class="basis-1/3 truncate">
       <!-- LOCATION START -->
-      <div class="flex items-center p-4 justify-between gap-2 w-full h-[64px]">
+      <div class="flex items-center p-4 justify-between gap-2 w-full h-[68px]">
         <h3>Location:</h3>
         <div
           v-if="!modal.location"
@@ -26,7 +26,7 @@
     </div>
     <div v-if="!modal.price" class="basis-1/3">
       <!-- MAKE START -->
-      <div class="flex items-center gap-2 p-4 justify-between h-[64px]">
+      <div class="flex items-center gap-2 p-4 justify-between h-[68px]">
         <h3>Make:</h3>
         <h3 class="text-blue-500 capitalize whitespace-nowrap cursor-pointer">
           <!-- TODO: Reflect current route -->
@@ -48,7 +48,7 @@
     <div class="basis-1/3 grow">
       <!-- PRICE START -->
       <div
-        class="flex items-center grow gap-2 p-4 justify-between min-h-[64px]"
+        class="flex items-center grow gap-2 p-4 justify-between min-h-[68px]"
       >
         <div v-if="!modal.price" class="flex grow justify-between">
           <div>Price:</div>
@@ -60,22 +60,34 @@
           </div>
         </div>
         <div v-else class="flex flex-col grow gap-2 sm:max-lg:flex-row grow">
-          <input
-            class="border p-1 rounded w-full"
-            type="number"
-            placeholder="Min"
-            min="0"
-            v-model="priceRange.min"
-          />
-          <input
-            class="border p-1 rounded w-full"
-            type="number"
-            placeholder="Max"
-            min="0"
-            v-model="priceRange.max"
-          />
+          <div
+            class="flex flex-row grow shrink-0 items-center gap-2 basis-2/5 justify-between"
+          >
+            <label for="min">Min:</label>
+            <input
+              name="min"
+              class="border p-1 rounded sm:max-lg:w-full"
+              type="number"
+              placeholder="Min"
+              min="0"
+              v-model="priceRange.min"
+            />
+          </div>
+          <div
+            class="flex flex-row shrink-0 items-center gap-2 basis-2/5 justify-between"
+          >
+            <label for="max">Max:</label>
+            <input
+              name="max"
+              class="border p-1 rounded sm:max-lg:w-full"
+              type="number"
+              placeholder="Max"
+              min="0"
+              v-model="priceRange.max"
+            />
+          </div>
           <button
-            class="bg-blue-400 w-full rounded text-white p-1"
+            class="bg-blue-400 w-full rounded text-white p-1 basis-1/5"
             @click="onChangePrice"
           >
             Apply
