@@ -1,7 +1,7 @@
 <template>
   <NuxtErrorBoundary>
     <div class="flex flex-col lg:flex-row gap-5">
-      <SideBar class="basis-1/4 flex grow-0" />
+      <Sidebar class="basis-1/4 flex grow-0" />
       <NuxtPage class="basis-3/4" />
     </div>
     <template #error="{ error }">
