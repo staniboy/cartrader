@@ -1,6 +1,6 @@
 <template>
   <card
-    class="sticky top-20 w-min-0 lg:w-[280px] flex flex-col shrink-0 sm:max-lg:flex-row divide-y sm:max-lg:divide-y-0"
+    class="h-full sticky top-20 w-min-0 lg:w-[280px] flex flex-col shrink-0 sm:max-lg:flex-row divide-y sm:max-lg:divide-y-0"
   >
     <!-- Location -->
     <sidebar-item v-if="!modal.price" :title="'Location: '">
