@@ -1,7 +1,9 @@
 <template>
   <!-- TODO: Display "there is no messages if there is no messages" -->
   <Card v-for="message in messages" class="p-4 flex flex-col gap-4">
-    <div class="text-xl">{{ message.name }}</div>
+    <div class="p-2 rounded border bg-gray-100 text-md font-medium gap-2">
+      Message from {{ message.name }}
+    </div>
     <div>{{ message.message }}</div>
 
     <div class="flex flex-row gap-4">
