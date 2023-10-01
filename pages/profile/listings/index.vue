@@ -1,35 +1,55 @@
 <template>
-  <div class="flex justify-between items-center">
-    <h1 class="text-6xl">My Listings</h1>
-    <nuxt-link
-      to="/profile/listings/create"
-      class="flex py-2 px-4 bg-sky-600 hover:bg-sky-700 rounded-full justify-center items-center text-center text-xl text-white font-bold cursor-pointer"
-      >Add</nuxt-link
-    >
+  <div class="flex items-center gap-4 justify-between py-4">
+    <div class="text-4xl">My Listings</div>
+    <Button>
+      <nuxt-link to="/profile/listings/create">Add</nuxt-link>
+    </Button>
   </div>
   <div class="flex flex-col gap-2">
     <ClientOnly>
-      <CarCard v-for="listing in listings" :car="listing">
-        <div class="flex flex-row gap-2">
-          <nuxt-link
-            class="text-blue-400"
-            :to="`/profile/listings/view/${listing.id}`"
-            >Messages
-          </nuxt-link>
-          <p
-            class="text-red-400 cursor-pointer"
-            @click="deleteListing(listing.id)"
-          >
-            Delete
-          </p>
+      <Card v-for="listing in listings" class="h-[100px]">
+        <div class="flex justify-between">
+          <!-- Image -->
+          <NuxtImg
+            class="grow-0 h-[100px] object-cover"
+            :src="`${config.public.supabase.url}/storage/v1/object/public/images/${listing.image}`"
+            @click="
+              navigateTo(`/car/${listing.make} ${listing.model}/${listing.id}`)
+            "
+          />
+          <!-- Content -->
+          <div class="flex grow justify-between items-center p-6">
+            <div>
+              <!-- Title -->
+              <div class="text-xl">
+                {{ `${listing.make} ${listing.model}` }}
+              </div>
+              <!-- Price -->
+              <div class="text-md">{{ `$${listing.price}` }}</div>
+            </div>
+            <div class="flex flex-col">
+              <nuxt-link
+                class="text-blue-400"
+                :to="`/profile/listings/view/${listing.id}`"
+                >Messages
+              </nuxt-link>
+              <p
+                class="text-red-400 cursor-pointer"
+                @click="deleteListing(listing.id)"
+              >
+                Delete
+              </p>
+            </div>
+          </div>
         </div>
-      </CarCard>
+      </Card>
     </ClientOnly>
   </div>
 </template>
 <script setup>
 // TODO: Add delete confirmation
 const user = useSupabaseUser();
+const config = useRuntimeConfig();
 const { data: listings } = await useFetch(
   `/api/car/listings/user/${user.value.id}`
 );
