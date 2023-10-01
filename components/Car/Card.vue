@@ -2,7 +2,7 @@
   <Card class="md:h-[200px]">
     <div class="flex flex-col md:flex-row h-full">
       <!-- Image -->
-      <div class="w-[300px] shrink-0">
+      <div class="w-full md:w-[300px] shrink-0">
         <NuxtImg
           class="w-full h-full object-cover"
           :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
