@@ -7,7 +7,7 @@
       >Add</nuxt-link
     >
   </div>
-  <div class="flex flex-col">
+  <div class="flex flex-col gap-2">
     <ClientOnly>
       <CarCard v-for="listing in listings" :car="listing">
         <div class="flex flex-row gap-2">
