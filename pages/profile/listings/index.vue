@@ -10,17 +10,19 @@
   <div class="flex flex-col">
     <ClientOnly>
       <CarCard v-for="listing in listings" :car="listing">
-        <nuxt-link
-          class="text-blue-400"
-          :to="`/profile/listings/view/${listing.id}`"
-          >View</nuxt-link
-        >
-        <p
-          class="text-red-400 cursor-pointer"
-          @click="deleteListing(listing.id)"
-        >
-          Delete
-        </p>
+        <div class="flex flex-row gap-2">
+          <nuxt-link
+            class="text-blue-400"
+            :to="`/profile/listings/view/${listing.id}`"
+            >View
+          </nuxt-link>
+          <p
+            class="text-red-400 cursor-pointer"
+            @click="deleteListing(listing.id)"
+          >
+            Delete
+          </p>
+        </div>
       </CarCard>
     </ClientOnly>
   </div>
