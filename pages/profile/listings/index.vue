@@ -14,7 +14,7 @@
           <nuxt-link
             class="text-blue-400"
             :to="`/profile/listings/view/${listing.id}`"
-            >View
+            >Messages
           </nuxt-link>
           <p
             class="text-red-400 cursor-pointer"
