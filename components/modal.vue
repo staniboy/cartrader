@@ -1,16 +1,14 @@
 <template>
-  <dialog open class="bg-inherit">
-    <card class="p-4"><slot></slot></card>
+  <dialog open class="bg-inherit w-full h-full">
+    <card class="p-4"
+      ><div class="flex gap-2">{{ title }}</div>
+      <div><slot></slot></div
+    ></card>
   </dialog>
 </template>
 <script setup>
 const props = defineProps({
   title: String,
-  content: String,
 });
 </script>
-<style lang="css">
-dialog::backdrop {
-  background-color: black;
-}
-</style>
+<style scoped></style>
