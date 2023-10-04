@@ -1,4 +1,7 @@
 <template>
+  <modal class="backdrop:bg-black" ref="deleteModal"
+    >Are you sure you want to delete this listing?
+  </modal>
   <div class="flex items-center gap-4 justify-between py-4">
     <div class="text-4xl">My Listings</div>
     <Button>
@@ -48,13 +51,15 @@
 </template>
 <script setup>
 // TODO: Add delete confirmation
+const deleteModal = ref();
 const user = useSupabaseUser();
 const config = useRuntimeConfig();
 const { data: listings } = await useFetch(
   `/api/car/listings/user/${user.value.id}`
 );
 const deleteListing = async (id) => {
-  await $fetch(`/api/car/listings/${id}`, { method: "DELETE" });
-  listings.value = listings.value.filter((listing) => listing.id !== id);
+  deleteModal.value.show();
+  // await $fetch(`/api/car/listings/${id}`, { method: "DELETE" });
+  // listings.value = listings.value.filter((listing) => listing.id !== id);
 };
 </script>
