@@ -1,11 +1,10 @@
 <template>
-  <dialog ref="dialog" class="bg-inherit">
+  <dialog
+    ref="dialog"
+    class="bg-inherit backdrop:bg-gray-50 backdrop:opacity-50"
+  >
     <card class="p-4">
-      <div>
-        <div class="p-4"><slot></slot></div>
-
-        <div><Button @click="hide">Delete</Button></div>
-      </div>
+      <slot></slot>
     </card>
   </dialog>
 </template>
