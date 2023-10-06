@@ -23,7 +23,7 @@
           <!-- Image -->
           <NuxtImg
             class="grow-0 h-[100px] object-cover"
-            :src="`${config.public.supabase.url}/storage/v1/object/public/images/${listing.image}`"
+            :src="`${config.public.supabase.url}/storage/v1/object/public/images/${listing.images[0]}`"
             @click="
               navigateTo(`/car/${listing.make} ${listing.model}/${listing.id}`)
             "

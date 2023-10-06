@@ -2,7 +2,7 @@
   <div class="mt-10">
     <NuxtImg
       class="w-full"
-      :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
+      :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.images[0]}`"
     />
     <h1 class="mt-10 text-4xl">{{ car.make }} {{ car.model }}</h1>
     <div class="text-slate-500 flex text-lg mt-3 border-b pb-5 justify-between">

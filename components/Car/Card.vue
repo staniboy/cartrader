@@ -5,7 +5,7 @@
       <div class="w-full md:w-[300px] shrink-0">
         <NuxtImg
           class="w-full h-full object-cover"
-          :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
+          :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.images[0]}`"
           @click="navigateTo(`/car/${car.make} ${car.model}/${car.id}`)"
         />
       </div>
