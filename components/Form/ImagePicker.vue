@@ -2,6 +2,7 @@
   <div class="flex flex-col gap-2">
     <label :for="name" class="text-sm font-semibold">{{ label }}</label>
     <input
+      multiple
       :name="name"
       :id="name"
       type="file"
@@ -12,7 +13,7 @@
     <span class="text-red-700 text-sm font-bold" v-show="errorMessage">{{
       errorMessage
     }}</span>
-    <div v-if="image.preview">
+    <div v-for="image in images">
       <img class="border p-4 w-60" :src="image.preview" alt="image preview" />
     </div>
   </div>
@@ -39,36 +40,34 @@ const { value, errorMessage, handleBlur, handleChange } = useField(
   props.rules
 );
 
-const image = ref({
-  preview: null,
-  file: null,
-});
+let images = reactive([]);
 
-const clearImage = () => {
-  image.value.file = null;
-  image.value.preview = null;
+const clearImages = () => {
+  images = [];
 };
 
 const onImageChange = (event) => {
+  clearImages();
   const input = event.target;
   if (input.files.length > 0) {
-    const file = input.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      image.value.preview = reader.result;
-    };
-    reader.readAsDataURL(file);
-    image.value.file = file; // Store the file object directly
-    handleChange(file, true); // Update the field's value with the file object
+    for (let i = 0; i < input.files.length; i++) {
+      const image = {
+        preview: null,
+        file: null,
+      };
+      const file = input.files[i];
+      const reader = new FileReader();
+      reader.onload = async () => {
+        image.preview = reader.result;
+        image.file = file; // Store the file object directly
+        images.push({ ...image });
+        handleChange(file, true); // Update the field's value with the file object
+      };
+      reader.readAsDataURL(file);
+    }
   } else {
-    clearImage();
+    clearImages();
     handleChange(null, true); // Update the field's value with null when no file is selected
   }
 };
-
-watch(value, (newValue) => {
-  if (!newValue) {
-    clearImage();
-  }
-});
 </script>
