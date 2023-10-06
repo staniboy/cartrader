@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
       userId: userId,
     },
     select: {
-      image: true,
+      images: true,
       id: true,
       model: true,
       make: true,
