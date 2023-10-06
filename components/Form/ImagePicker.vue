@@ -61,7 +61,7 @@ const onImageChange = (event) => {
         image.preview = reader.result;
         image.file = file; // Store the file object directly
         images.push({ ...image });
-        handleChange(Object.keys(input.files), true); // Update the field's value with the file object
+        handleChange(Object.values(input.files), true); // Update the field's value with the file object
       };
       reader.readAsDataURL(file);
     }
