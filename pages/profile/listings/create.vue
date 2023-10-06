@@ -105,15 +105,19 @@ const dynamicFields = [
 ];
 
 const onSubmit = async (values) => {
-  // Upload image
-  const fileName = Math.floor(Math.random() * 100000000);
+  const imgPaths = [];
+  for (const image of values.images) {
+    // Upload image
+    const fileName = Math.floor(Math.random() * 100000000);
 
-  const { data, error } = await supabase.storage
-    .from("images")
-    .upload("public/" + fileName, values.image);
+    const { data, error } = await supabase.storage
+      .from("images")
+      .upload("public/" + fileName, image);
 
-  if (error) {
-    alert(error);
+    if (error) {
+      alert(error);
+    }
+    imgPaths.push(data.path);
   }
 
   // Fetch
@@ -122,13 +126,15 @@ const onSubmit = async (values) => {
     body: {
       ...values,
       userId: useSupabaseUser().value.id,
-      image: data.path,
+      images: imgPaths,
     },
   })
     .catch((error) => {
       //TODO: Implement error catch
       alert(error);
-      supabase.storage.from("images").remove(data.path);
+      for (const path of imgPaths) {
+        supabase.storage.from("images").remove(path);
+      }
     })
     .then(() => {
       navigateTo("/profile/listings");
