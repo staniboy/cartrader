@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
   serverSupabaseClient(event)
     .storage.from("images")
-    .remove([`${listing.image}`]);
+    .remove([...listing.images]);
 
   return prisma.listing.delete({
     where: {
