@@ -16,7 +16,7 @@ model Listing {
   seats       Int
   miles       Int
   price       Int
-  image       String
+  images       String[]
   features    String[]
   description String
   city        String

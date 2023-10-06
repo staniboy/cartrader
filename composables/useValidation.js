@@ -1,4 +1,4 @@
-import { object, string, number } from "yup";
+import { object, array, string, number } from "yup";
 
 export const useValidation = () => {
   const currentYear = new Date().getFullYear() + 1;
@@ -9,7 +9,7 @@ export const useValidation = () => {
     price: number()
       .required("Price is required")
       .min(0, "Must be higher than a 0"),
-    image: string().required("Image is required"),
+    images: array().of(string()).required("Image is required"),
     year: number()
       .required("Year is required")
       .min(1900, "Must be between 1900 and 2100")

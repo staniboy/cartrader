@@ -4,7 +4,7 @@
     <Form @submit="onSubmit" v-slot="{ isSubmitting }">
       <div class="flex flex-col gap-3 py-4">
         <FormDynamicFields :fields="dynamicFields" />
-        <FormImagePicker :rules="validationSchema.fields.image" name="image" />
+        <FormImagePicker :rules="validationSchema.fields.image" name="images" />
         <button
           type="submit"
           :disabled="isSubmitting"
