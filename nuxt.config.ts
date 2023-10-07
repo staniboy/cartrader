@@ -6,5 +6,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@vee-validate/nuxt",
     "@nuxtjs/supabase",
+    "nuxt-icon",
   ],
 });
