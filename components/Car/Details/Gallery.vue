@@ -22,7 +22,7 @@
       size="3em"
     />
     <NuxtImg
-      class="w-full"
+      class="w-full lg:h-[650px] object-cover"
       :src="`${config.public.supabase.url}/storage/v1/object/public/images/${images[imgIndex]}`"
     />
   </div>
