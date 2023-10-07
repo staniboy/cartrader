@@ -13,8 +13,13 @@
     <span class="text-red-700 text-sm font-bold" v-show="errorMessage">{{
       errorMessage
     }}</span>
-    <div v-for="image in images">
-      <img class="border p-4 w-60" :src="image.preview" alt="image preview" />
+    <div class="flex flex-wrap gap-2">
+      <img
+        v-for="image in images"
+        class="border p-2 w-48"
+        :src="image.preview"
+        alt="image preview"
+      />
     </div>
   </div>
 </template>
