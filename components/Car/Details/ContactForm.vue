@@ -72,9 +72,7 @@
           class="text-red-700 text-sm font-bold"
         />
       </div>
-      <button class="bg-blue-400 text-white px-10 py-3 rounded mt-4">
-        Submit
-      </button>
+      <app-button class="mt-2"> Submit </app-button>
     </Form>
   </div>
 </template>
