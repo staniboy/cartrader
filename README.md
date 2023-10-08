@@ -1,6 +1,7 @@
-# Nuxt 3 Minimal Starter
+# Car trading platform based on Nuxt with Supabase postgresql and auth.
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Front-end: Nuxt, Vee-validate, Yup, Prisma, Tailwind CSS
+Back-end: Nuxt, Yup, Supabase
 
 ## Setup
 
