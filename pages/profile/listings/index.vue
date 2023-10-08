@@ -64,7 +64,8 @@ const listingId = ref();
 const user = useSupabaseUser();
 const config = useRuntimeConfig();
 const { data: listings } = await useFetch(
-  `/api/car/listings/user/${user.value.id}`
+  `/api/car/listings/user/${user.value.id}`,
+  { method: "GET" }
 );
 const hideModal = () => confirmModal.value.hide();
 const showModal = (id) => {

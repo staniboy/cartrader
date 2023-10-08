@@ -1,6 +1,6 @@
 export default async () => {
   const { capitalizeSentence } = useUtils();
-  const { data, error } = await useFetch(`/api/cities`);
+  const { data, error } = await useFetch(`/api/cities`, { method: "GET" });
 
   if (error.value) {
     throw createError({ ...error.value });

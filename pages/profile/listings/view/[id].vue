@@ -23,6 +23,7 @@
 <script setup>
 const route = useRoute();
 const { data: messages } = useFetch(
-  `/api/car/listings/${route.params.id}/message`
+  `/api/car/listings/${route.params.id}/message`,
+  { method: "GET" }
 );
 </script>
