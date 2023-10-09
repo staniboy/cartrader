@@ -1,6 +1,8 @@
 # Car trading platform
 
-Car trading platform based on Nuxt with Supabase postgresql and auth.
+Car trading platform based on Nuxt with Supabase postgresql and auth.\
+\
+⚡[Live Demo](https://car-trader.onrender.com)
 
 ## Front-end
   - Nuxt
