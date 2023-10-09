@@ -39,6 +39,9 @@ const login = () => {
   supabase.auth
     .signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}`,
+      },
     })
     .catch((err) => console.log(err));
 };
