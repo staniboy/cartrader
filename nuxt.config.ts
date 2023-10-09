@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "nuxt-icon",
   ],
-  nitro: {
-    preset: "vercel",
+  routeRules: {
+    // Use client-side rendering for all routes
+    "/**": { ssr: false },
   },
 });
