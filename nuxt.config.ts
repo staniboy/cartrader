@@ -8,8 +8,4 @@ export default defineNuxtConfig({
     "@nuxtjs/supabase",
     "nuxt-icon",
   ],
-  routeRules: {
-    // Use client-side rendering for all routes
-    "/**": { ssr: false },
-  },
 });
