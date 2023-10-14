@@ -1,5 +1,11 @@
 <template>
   <!-- TODO: Display "there is no messages if there is no messages" -->
+  <div
+    v-if="messages.length < 1"
+    class="text-4xl text-gray-400 flex items-center justify-center"
+  >
+    There is no messages :(
+  </div>
   <!-- Modal -->
   <modal class="backdrop:bg-black" ref="confirmModal">
     <div class="flex flex-col gap-4">
@@ -16,7 +22,7 @@
     class="p-3 flex flex-col divide-y text-gray-800"
   >
     <div class="text-md font-medium flex items-center justify-between mb-3">
-      <div>Message from {{ message.name }}</div>
+      <div>From: {{ message.name }}</div>
       <div
         class="text-sm cursor-pointer hover:text-red-600 text-gray-400"
         @click="showModal(message.id)"
