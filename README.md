@@ -1,7 +1,19 @@
-# Car trading platform based on Nuxt with Supabase postgresql and auth.
+# Car trading platform
 
-Front-end: Nuxt, Vee-validate, Yup, Prisma, Tailwind CSS
-Back-end: Nuxt, Yup, Supabase
+Car trading platform based on Nuxt with Supabase postgresql and auth.\
+\
+⚡[Live Demo](https://car-trader.onrender.com) (hosterd on free render.com plan, might take a minute to spin back up 🙂).
+
+## Front-end
+  - Nuxt
+  - Vee-validate
+  - Yup
+  - Prisma
+  - Tailwind CSS
+## Back-end
+  - Nuxt
+  - Yup
+  - Supabase
 
 ## Setup
 
