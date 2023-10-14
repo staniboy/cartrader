@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
   return prisma.message.delete({
     where: {
-      messageId: messageId,
+      id: parseInt(messageId),
     },
   });
 });
