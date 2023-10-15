@@ -33,6 +33,7 @@ model Message {
   email     String
   phone     String
   message   String
+  read      Boolean @default(false)
 
   Listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
