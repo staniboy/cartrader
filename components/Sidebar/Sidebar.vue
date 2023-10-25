@@ -99,7 +99,6 @@ const modal = ref({
 const toggleModal = (key) => {
   modal.value[key] = !modal.value[key];
   if (key === "location" && modal.value[key]) {
-    console.log(locationInput.value);
     nextTick(() => locationInput.value.focus());
   }
 };
