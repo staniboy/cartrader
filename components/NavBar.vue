@@ -4,7 +4,7 @@
   >
     <NuxtLink class="text-3xl font-mono" to="/">cartrader</NuxtLink>
     <div>
-      <div v-if="user" class="flex flex-row items-center gap-4">
+      <div v-show="user" class="flex flex-row items-center gap-4">
         <nuxt-link
           to="/profile/listings"
           class="cursor-pointer hover:text-sky-500 text-md"
@@ -18,7 +18,7 @@
         </button>
       </div>
       <button
-        v-else
+        v-show="!user"
         @click="login"
         class="border rounded-md px-4 py-1 hover:bg-sky-500 hover:border-sky-500 hover:text-white font-bold text-md"
       >
