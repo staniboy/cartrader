@@ -1,7 +1,7 @@
 <template>
   <!-- TODO: Display "there is no messages if there is no messages" -->
   <div
-    v-if="messages.length < 1"
+    v-if="messages && messages.length < 1"
     class="text-4xl text-gray-400 flex items-center justify-center"
   >
     There is no messages :(
@@ -49,7 +49,7 @@
 </template>
 <script setup>
 const route = useRoute();
-const { data: messages } = useFetch(
+const { data: messages } = await useFetch(
   `/api/car/listings/${route.params.id}/message`,
   { method: "GET" }
 );
