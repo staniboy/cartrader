@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full flex flex-col gap-3">
     <CarCard v-for="car in cars" :key="car.id" :car="car">
       <img
         :src="favStorage.includes(car.id) ? favChecked : favUnchecked"
